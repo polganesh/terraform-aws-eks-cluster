@@ -39,4 +39,17 @@
 |control_plane_logging_to_be_enabled	 |Y		        |      		|list	|possible values api, authenticator, controllerManager, scheduler                 |
 |worker_node_enable_detailed_monitoring	 |N	        |false      		|string	|if true then detailed monitoring enabled for worker node|
 
+## Autoscaling Spot,on demand and reserved instance
+|variable name |is required	|Default Value|Type	  | Notes       	 		                    |
+|:-------------|:-----------|:------------|:------|:--------------------------------------|
+|worker_node_instance_types	 |Y		        |      		|list	|possible instance types        |
+|worker_node_on_demand_base_capacity	 |N		        | 0     		|String 	| minimum % of desired capacity to be run by on demand instances        |
+|worker_node_on_demand_percentage_above_base_capacity	 |N		        | 100     		|String 	|default value -100,  % of on demand instances in cluster over worker_node_on_demand_base_capacity.      |
+|worker_node_spot_allocation_strategy	 |N		        | lowest-price     		|String 	|possible values capacity-optimized, lowest-price |
+|worker_node_spot_max_price	 |N		        | empty string     		|String 	|Maximum price per unit hour that the user is willing to pay for the Spot instances. Default: an empty string which means the on-demand price |
+|worker_node_spot_instance_pools	 |N		        | 2     		|String 	|Number of Spot pools per availability zone to allocate capacity |
+
+for complete list refer variables.tf of this module.
+
+
 
