@@ -86,7 +86,7 @@ variable "worker_node_on_demand_percentage_above_base_capacity" {
 }
 
 variable "worker_node_spot_allocation_strategy" {
-  default     = "capacity-optimized"
+  default     = "lowest-price"
   description = "possible values capacity-optimized, lowest-price"
 }
 
