@@ -20,6 +20,11 @@ This is Terraform module to provision managed K8s (Elastic Kubernetes Service) s
 
 ## [Important Variables](https://github.com/polganesh/terraform-aws-eks-cluster/blob/update-readme/docs/important-variable.md "Important Variables")
 
+## [Example](https://github.com/polganesh/terraform-aws-eks-cluster/blob/update-readme/docs/example.md
+ "Example")
+
+
+
 
 
 
