@@ -18,7 +18,8 @@ This is Terraform module to provision managed K8s (Elastic Kubernetes Service) s
 
 > Please note- This module heavily depends on VPC module mentioned above and VPC must be present before working with this module.
 
-## [Variables](https://github.com/polganesh/terraform-aws-eks-cluster/blob/update-readme/docs/important-variable.md "Heading link")
+## [Important Variables](https://github.com/polganesh/terraform-aws-eks-cluster/blob/update-readme/docs/important-variable.md "Important Variables")
+
 
 
 
