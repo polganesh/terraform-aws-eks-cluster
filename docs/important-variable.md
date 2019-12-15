@@ -28,5 +28,15 @@
 
 > Please note although K8s provide minor version in the form of X.yy.zz. in AWS EKS support only X.yy. any attempt to provide minor version will result in error.
 
+## Security
+|variable name |is required	|Default Value|Type	  | Notes       	 		                    |
+|:-------------|:-----------|:------------|:------|:--------------------------------------|
+|inbound_cidr_rules_for_workstation_https	 |Y		        |      		|list	|list of CIDR of local development machine to connect cluster                 |
+
+## Logging and Monitoring
+|variable name |is required	|Default Value|Type	  | Notes       	 		                    |
+|:-------------|:-----------|:------------|:------|:--------------------------------------|
+|control_plane_logging_to_be_enabled	 |Y		        |      		|list	|possible values api, authenticator, controllerManager, scheduler                 |
+|worker_node_enable_detailed_monitoring	 |N	        |false      		|string	|if true then detailed monitoring enabled for worker node|
 
 
