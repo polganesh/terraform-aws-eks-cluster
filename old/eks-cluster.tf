@@ -5,7 +5,7 @@ resource "aws_eks_cluster" "main" {
   enabled_cluster_log_types = var.control_plane_logging_to_be_enabled
 
   vpc_config {
-    # refer data.tf for following.
+    # refer local-data.tf for following.
     subnet_ids         = flatten([data.aws_subnet_ids.private_app_subnets.ids])
     security_group_ids = flatten([aws_security_group.tf-eks-master.id])
   }
