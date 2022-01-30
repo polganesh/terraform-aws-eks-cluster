@@ -6,7 +6,7 @@ resource "random_string" "eks-fargate-iam-role-policy-suffix" {
 }
 
 locals {
-    fargate_profiles = { for k, v in var.fargate_profiles : k => v  }
+  fargate_profiles = { for k, v in var.fargate_profiles : k => v }
 }
 
 data "aws_iam_policy_document" "eks_fargate_pod_assume_role" {

@@ -8,8 +8,8 @@ resource "aws_eks_cluster" "main" {
     security_group_ids = flatten([aws_security_group.tf-eks-master.id])
     # following mainly control how kubectl can work with this eks
     endpoint_private_access = var.eks_endpoint_private_access
-    endpoint_public_access = var.eks_endpoint_public_access
-    public_access_cidrs     =var.eks_public_access_cidrs
+    endpoint_public_access  = var.eks_endpoint_public_access
+    public_access_cidrs     = var.eks_public_access_cidrs
   }
 
   kubernetes_network_config {
@@ -53,4 +53,5 @@ resource "aws_eks_cluster" "main" {
     delete = var.timeout_for_resource_delete
     update = var.timeout_for_resource_update
   }
+
 }

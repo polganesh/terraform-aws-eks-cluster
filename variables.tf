@@ -48,12 +48,6 @@ variable "cluster_enabled_log_types" {
   default     = []
 }
 
-#variable "cluster_log_kms_key_id" {
-#  description = "If a KMS Key ARN is set, this key will be used to encrypt the corresponding log group. Please be sure that the KMS Key has an appropriate key policy (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html)"
-#  type        = string
-#  default     = ""
-#}
-
 variable "eks_version" {
   default     = "1.19"
   description = "define k8s version"
@@ -191,18 +185,6 @@ variable "worker_additional_security_group_ids" {
   default     = []
 }
 
-#variable "node_groups_defaults" {
-#  description = "Map of values to be applied to all node groups. See `node_groups` module's documentation for more details"
-#  type        = any
-#  default     = {}
-#}
-#
-#variable "node_groups" {
-#  description = "Map of map of node groups to create. See `node_groups` module's documentation for more details"
-#  type        = any
-#  default     = {}
-#}
-
 variable "tag_for_node_group" {
   type    = map(any)
   default = {}
@@ -235,179 +217,53 @@ variable "node_groups" {
       scaling_config_max_capacity              = 1
       scaling_config_min_capacity              = 1
       update_config_max_unavailable_percentage = 50
-      instance_types                            = ["t2.micro"]
-      capacity_type= "ON_DEMAND"
+      instance_types                           = ["t2.micro"]
+      capacity_type                            = "ON_DEMAND"
     }
   ]
 }
 variable "eks_endpoint_private_access" {
   description = "Whether the Amazon EKS private API server endpoint is enabled. Default is false."
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "eks_endpoint_public_access" {
   description = "Whether the Amazon EKS public API server endpoint is enabled. Default is true."
-  type = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 variable "eks_public_access_cidrs" {
   description = "List of CIDR blocks. Indicates which CIDR blocks can access the Amazon EKS public API server endpoint when enabled. EKS defaults this to a list with 0.0.0.0/0. in other words it will control from where we can invoke kubectl"
-  type = list(string)
-  default = ["0.0.0.0/0"]
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
 }
-
-#variable "enable_ingress_config" {
-#  type = bool
-#  default = true
-#}
-
-
-#endpoint_private_access = false
-#    endpoint_public_access = true
-#    public_access_cidrs     =var.cluster_en
-
-#desired_capacity                     = var.workers_group_defaults["asg_desired_capacity"]
-#      iam_role_arn                         = var.default_iam_role_arn
-#      instance_types                       = [var.workers_group_defaults["instance_type"]]
-#      key_name                             = var.workers_group_defaults["key_name"]
-#      launch_template_id                   = var.workers_group_defaults["launch_template_id"]
-#      launch_template_version              = var.workers_group_defaults["launch_template_version"]
-#      set_instance_types_on_lt             = false
-#      max_capacity                         = var.workers_group_defaults["asg_max_size"]
-#      min_capacity                         = var.workers_group_defaults["asg_min_size"]
-#      subnets                              = var.workers_group_defaults["subnets"]
-#      create_launch_template               = false
-#      bootstrap_env                        = {}
-#      kubelet_extra_args                   = var.workers_group_defaults["kubelet_extra_args"]
-#      disk_size                            = var.workers_group_defaults["root_volume_size"]
-#      disk_type                            = var.workers_group_defaults["root_volume_type"]
-#      disk_iops                            = var.workers_group_defaults["root_iops"]
-#      disk_throughput                      = var.workers_group_defaults["root_volume_throughput"]
-#      disk_encrypted                       = var.workers_group_defaults["root_encrypted"]
-#      disk_kms_key_id                      = var.workers_group_defaults["root_kms_key_id"]
-#      enable_monitoring                    = var.workers_group_defaults["enable_monitoring"]
-#      eni_delete                           = var.workers_group_defaults["eni_delete"]
-#      public_ip                            = var.workers_group_defaults["public_ip"]
-#      pre_userdata                         = var.workers_group_defaults["pre_userdata"]
-#      additional_security_group_ids        = var.workers_group_defaults["additional_security_group_ids"]
-#      taints                               = []
-#      timeouts                             = var.workers_group_defaults["timeouts"]
-#      update_default_version               = true
-#      ebs_optimized                        = null
-#      metadata_http_endpoint               = var.workers_group_defaults["metadata_http_endpoint"]
-#      metadata_http_tokens                 = var.workers_group_defaults["metadata_http_tokens"]
-#      metadata_http_put_response_hop_limit = var.workers_group_defaults["metadata_http_put_response_hop_limit"]
-#      ami_is_eks_optimized                 = true
 
 variable "tag_for_cloud_watch_log_group" {
   type    = map(any)
   default = {}
 }
 
+variable "enable_irsa" {
+  type        = bool
+  default     = false
+  description = "enable IAM role for Service account "
+}
 
+variable "openid_connect_audiences" {
+  description = "List of OpenID Connect audience client IDs to add to the IRSA provider"
+  type        = list(string)
+  default     = []
+}
 
-#variable "encrypt_cloudwatch_logs_with_kms_key" {
-#  description = "flag for encrypting cloud watch logs"
-#  type        = bool
-#  default     = true
-#}
-
-#variable "eks_version" {
-#  default     = "1.12"
-#  description = "define k8s version"
-#}
-#
-#
-#variable "image_id" {}
-#
-#
-## variable "instance_ebs_optimized"{}
-#variable "key_name" {}
-#
-## variable "launch_config_sec_group_id"{}
-## variable "root_volume_size"{}
-## we want ec2 instance must be created in private subnet
-#variable "associate_public_ip_address" {
-#  default = "false"
-#}
-#
-#variable "desired_capacity" {}
-#variable "min_size" {}
-#variable "max_size" {}
-#
-#variable "inbound_cidr_rules_for_workstation_https" {
-#}
-#
-
-#
-#v
-#
-#variable "control_plane_logging_to_be_enabled" { default = [] }
-#
-#variable "worker_node_capacity_reservation_preference" {
-#  default     = "none"
-#  description = "possible values open or none. if open then reserved capacity used"
-#}
-#
-#variable "worker_node_cpu_credits" {
-#  default     = "standard"
-#  description = "possible values standard or unlimited. T3 instances are launched as unlimited by default. T2 instances are launched as standard by default."
-#}
-#
-#variable "worker_node_enable_detailed_monitoring" {
-#  default     = "false"
-#  description = "Possible values true or false. if it is true then detailed monitoring enabled for worker nodes"
-#}
-#
-#variable "worker_node_ebs_optimized" {
-#  default     = "false"
-#  description = "Possible values true or false. if it is true then EBS will be optimized for worker node."
-#}
-#
-#variable "worker_node_instance_types" {}
-#
-#variable "worker_node_on_demand_base_capacity" {
-#  default = "0"
-#}
-#variable "worker_node_on_demand_percentage_above_base_capacity" {
-#  default = "100"
-#}
-#
-#variable "worker_node_spot_allocation_strategy" {
-#  default     = "lowest-price"
-#  description = "possible values capacity-optimized, lowest-price"
-#}
-#
-#variable "worker_node_health_check_type" {
-#  default     = "EC2"
-#  description = "possible values EC2, ELB."
-#}
-#
-#variable "worker_node_spot_instance_pools" {
-#  default     = "2"
-#  description = "Number of Spot pools per availability zone to allocate capacity. EC2 Auto Scaling selects the cheapest Spot pools and evenly allocates Spot capacity across the number of Spot pools that you specify."
-#}
-#
-#variable "worker_node_spot_max_price" {
-#  default     = ""
-#  description = "Maximum price per unit hour that the user is willing to pay for the Spot instances. Default: an empty string which means the on-demand price"
-#}
-#
-#variable "common_tags" {
-#  type    = map
-#  default = {}
-#}
-#
-#variable "tag_for_worker_nodes" {
-#  type    = map
-#  default = {}
+#variable "lifecycle_prevent_destroy" {
+#  type = bool
+#  default = false
 #}
 
-
-
-
-
-
-
+variable "cluster_addons" {
+  description = "Map of cluster addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`"
+  type        = any
+  default     = {}
+}

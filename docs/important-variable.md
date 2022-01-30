@@ -1,6 +1,6 @@
 # Important Variables
 
-## Variables for VPC and Subnet Discovery for worker node discovery
+## Variables for VPC and Subnet Discovery for managed worker node discovery
 
 |variable name |is required	|Default Value|Type	  | Notes       	 		                    |
 |:-------------|:-----------|:------------|:------|:--------------------------------------|
@@ -12,7 +12,7 @@
 
 > This will create EKS cluster in VPC which has  tag with key _Name_ has value **starts** with vpc-{region_id} and **ends** with {cost_centre}-{vpc_seq_id}
 
-> Create Worker Nodes private subnet in VPC based on above criteria and has tag with key _Name_ has value **contains** -privApp-
+> Create managed Worker Nodes private subnet in VPC based on above criteria and has tag with key _Name_ has value **contains** -privApp-
 
 ## Variables for worker nodes
 |variable name |is required	|Default Value|Type	  | Notes       	 		                    |

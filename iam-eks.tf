@@ -49,7 +49,7 @@ EOF
 
 #policy for helping eks work with load balancer
 resource "aws_iam_policy" "AmazonEKSClusterLBPolicy" {
-  name = "pol-glob-${var.environment}-${var.cost_centre}-${var.app_service}eksElb-${random_string.eks-iam-role-policy-suffix.result}-${var.seq_id}"
+  name   = "pol-glob-${var.environment}-${var.cost_centre}-${var.app_service}eksElb-${random_string.eks-iam-role-policy-suffix.result}-${var.seq_id}"
   policy = <<EOF
 {
     "Version": "2012-10-17",

@@ -9,5 +9,5 @@ module "fargate" {
   cost_centre                           = var.cost_centre
   app_service                           = var.app_service
 
-  depends_on = [aws_eks_cluster.main,null_resource.tag-privateApp-subnet]
+  depends_on = [aws_eks_cluster.main, null_resource.tag-privateApp-subnet]
 }

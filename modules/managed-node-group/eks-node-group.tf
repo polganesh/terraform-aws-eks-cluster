@@ -12,15 +12,15 @@
 
 resource "aws_eks_node_group" "workers" {
   node_group_name = var.node_group.node_group_name
-  cluster_name  = var.cluster_name
-  subnet_ids = var.managed_node_group_subnet_ids
-  node_role_arn = var.default_iam_role_arn
+  cluster_name    = var.cluster_name
+  subnet_ids      = var.managed_node_group_subnet_ids
+  node_role_arn   = var.default_iam_role_arn
   scaling_config {
     desired_size = var.node_group.scaling_config_desired_capacity
     max_size     = var.node_group.scaling_config_max_capacity
     min_size     = var.node_group.scaling_config_min_capacity
   }
-  capacity_type = var.node_group.capacity_type
+  capacity_type  = var.node_group.capacity_type
   instance_types = var.node_group.instance_types
 
 }
